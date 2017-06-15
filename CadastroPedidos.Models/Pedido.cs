@@ -7,9 +7,9 @@ namespace CadastroPedidos.Models
     {
         public int Id { get; set; }
         public int Numero { get; set; }
-        public decimal Valor { get; set; }
-        public ICollection<Item> Itens { get; set; }
+        public int ClienteId { get; set; }
 
+        public virtual ICollection<Item> Itens { get; set; }
         public virtual Cliente Cliente { get; set; }
 
         public DateTime DataCadastro { get; set; }

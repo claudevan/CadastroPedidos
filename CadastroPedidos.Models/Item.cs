@@ -7,7 +7,8 @@ namespace CadastroPedidos.Models
         public int Id { get; set; }
         public decimal Quantidade { get; set; }
         public decimal Valor { get; set; }
-        public decimal ValorTotal { get; set; }
+        public int PedidoId { get; set; }
+        public int ProdutoId { get; set; }
 
         public virtual Pedido Pedido { get; set; }
         public virtual Produto Produto { get; set; }

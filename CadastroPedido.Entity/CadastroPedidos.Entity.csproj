@@ -49,8 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\ClienteConfig.cs" />
+    <Compile Include="Config\ItemConfig.cs" />
     <Compile Include="Config\PedidoConfig.cs" />
+    <Compile Include="Config\ProdutoConfig.cs" />
     <Compile Include="Contexto\CadastroPedidosDataContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

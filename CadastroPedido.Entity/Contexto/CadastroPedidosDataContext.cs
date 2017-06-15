@@ -12,7 +12,16 @@ namespace CadastroPedido.Entity.Contexto
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Properties<string>()
+                .Configure(p => p.HasColumnType("varchar"));
+            modelBuilder.Properties<string>()
+                .Configure(p => p.HasMaxLength(100));
+            
+
             modelBuilder.Configurations.Add(new PedidoConfig());
+            modelBuilder.Configurations.Add(new ItemConfig());
+            modelBuilder.Configurations.Add(new ClienteConfig());
+            modelBuilder.Configurations.Add(new ProdutoConfig());
         }
 
         public override int SaveChanges()
