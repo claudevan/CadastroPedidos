@@ -16,12 +16,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
+                <a href="@Url.Action("Index", "Pedido")" class = "navbar-brand" aria-label="Left Align">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    Purchase
+                </a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="@Url.Action("Create", "Pedido")" class="navbar-brand" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            Novo
+                        </a>
+                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -30,7 +39,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Claudevan José da Silva</p>
         </footer>
     </div>
 
