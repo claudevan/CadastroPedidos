@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CadastroPedido.Entity.Contexto
 {
-    class CadastroPedidosDataContext : DbContext
+    public class CadastroPedidosDataContext : DbContext
     {
         public CadastroPedidosDataContext() : base("CadastroPedidosDB") {}
 
