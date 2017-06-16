@@ -55,7 +55,5 @@ namespace CadastroPedido.Entity.Contexto
         public DbSet<Item> Itens { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
-
-        
     }
 }

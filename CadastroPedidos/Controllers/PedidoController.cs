@@ -12,32 +12,51 @@ namespace CadastroPedidos.Controllers
 {
     public class PedidoController : Controller
     {
-        private IRepositoryPedido _db;
-        private IRepositoryBase<Cliente> _dbCliente;
+        private IRepositoryPedido _ctx;
+        private IRepositoryBase<Cliente> _ctxCliente;
+        private IRepositoryBase<Produto> _ctxProduto;
         private IUnitOfWork _UoW;
 
-        public PedidoController(IRepositoryPedido db, IRepositoryBase<Cliente> dbCliente, IUnitOfWork UoW)
+        public PedidoController(IRepositoryPedido db, IRepositoryBase<Cliente> dbCliente, IUnitOfWork UoW, IRepositoryBase<Produto> ctxProduto)
         {
-            _db = db;
-            _dbCliente = dbCliente;
+            _ctx = db;
+            _ctxCliente = dbCliente;
             _UoW = UoW;
+            _ctxProduto = ctxProduto;
         }
 
         // GET: Pedido
         public ActionResult Index()
         {
-            var clientes = _dbCliente.Get().Select(s => new SelectListItem() { Text = s.Nome, Value = s.Id.ToString() }).ToList();
-            
-            ViewBag.Clientes = clientes;
+            ViewBag.Clientes = GetClientes();
 
             return View();
         }
 
         public ViewResult Pesquisa(int cliente, int numeroPedido, DateTime dataInicial, DateTime dataFinal)
         {
-            var resultado = _db.Pesquisa(cliente, numeroPedido, dataInicial, dataFinal);
+            var resultado = _ctx.Pesquisa(cliente, numeroPedido, dataInicial, dataFinal);
 
             return View("_Pesquisa", resultado);
+        }
+
+        public ViewResult Novo()
+        {
+            ViewBag.Clientes = GetClientes();
+            ViewBag.Produtos = GetProdutos();
+
+            return View();
+        }
+
+
+        private List<SelectListItem> GetClientes()
+        {
+            return _ctxCliente.Get().Select(s => new SelectListItem() { Text = s.Nome, Value = s.Id.ToString() }).ToList();
+        }
+
+        private List<SelectListItem> GetProdutos()
+        {
+            return _ctxProduto.Get().Select(s => new SelectListItem() { Text = s.Descricao, Value = s.Id.ToString() }).ToList();
         }
     }
 }
