@@ -4,6 +4,7 @@ using Unity.Mvc3;
 using CadastroPedido.Entity.Contracts;
 using CadastroPedido.Entity.Repositories;
 using CadastroPedido.Entity.Contexto;
+using CadastroPedido.Entity.UoW;
 
 namespace CadastroPedidos
 {
@@ -23,6 +24,7 @@ namespace CadastroPedidos
             container.RegisterType<CadastroPedidosDataContext, CadastroPedidosDataContext>();
             container.RegisterType<IRepositoryPedido, RepositoryPedido>();
             container.RegisterType(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+            container.RegisterType<IUnitOfWork, UnitOfWork>();
 
             return container;
         }

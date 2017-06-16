@@ -1,5 +1,6 @@
 ﻿using CadastroPedido.Entity.Contracts;
 using CadastroPedido.Entity.Repositories;
+using CadastroPedido.Entity.UoW;
 using CadastroPedidos.Models;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ namespace CadastroPedidos.Controllers
     {
         private IRepositoryPedido _db;
         private IRepositoryBase<Cliente> _dbCliente;
+        private IUnitOfWork _UoW;
 
-        public PedidoController(IRepositoryPedido db, IRepositoryBase<Cliente> dbCliente)
+        public PedidoController(IRepositoryPedido db, IRepositoryBase<Cliente> dbCliente, IUnitOfWork UoW)
         {
             _db = db;
             _dbCliente = dbCliente;
+            _UoW = UoW;
         }
 
         // GET: Pedido

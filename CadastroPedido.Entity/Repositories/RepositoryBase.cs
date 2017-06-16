@@ -18,14 +18,12 @@ namespace CadastroPedido.Entity.Repositories
         public void Create(T entity)
         {
             _ctx.Set<T>().Add(entity);
-            _ctx.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var entity = GetById(id);
             _ctx.Set<T>().Remove(entity);
-            _ctx.SaveChanges();
         }
 
         public void Dispose()
@@ -46,7 +44,6 @@ namespace CadastroPedido.Entity.Repositories
         public void Update(T entity)
         {
             _ctx.Entry(entity).State = System.Data.Entity.EntityState.Modified;
-            _ctx.SaveChanges();
         }
     }
 }
