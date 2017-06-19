@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-
+    //Incluir datatables.net
 });
 
 function adicionarItem() {
