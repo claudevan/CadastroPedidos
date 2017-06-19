@@ -1,14 +1,13 @@
 ﻿@model CadastroPedidos.ViewModels.PedidoVM
 
-@using (Html.BeginForm()) 
-{
+<form id="frmNovo">
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Cadastrar Novo Pedido</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+
         <div class="row">
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.Cliente, htmlAttributes: new { @class = "control-label" })
@@ -30,22 +29,45 @@
         <h5>Itens do Pedido</h5>
         <div class="row">
             <div class="form-group col-md-6">
-                <label for="produto" class = "control-label">Produto</label>
+                <label for="produto" class="control-label">Produto</label>
                 <div>
                     @Html.DropDownList("produto", (List<SelectListItem>)@ViewBag.Produtos, "", new { @class = "form-control", name = "produto" })
                 </div>
             </div>
 
             <div class="form-group col-md-6">
-                <button class="btn btn-default">Adicionar</button>
+                <button type="button" id="btnAdicionar" class="btn btn-info" onclick="adicionarItem()">Adicionar</button>
             </div>
         </div>
-        
+
+        <div class="form-group">
+            <table id="tblProdutos" class="table">
+                <thead>
+                    <tr>
+                        <th style="display:none">Id</th>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Valor</th>
+                        <th>Total</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+ 
 
         <div class="form-group">
             <div>
-                <input type="submit" value="Salvar" class="btn btn-success" />
+                <button type="button" value="Salvar" class="btn btn-success" onclick="Salvar()">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                    Salvar
+                </button>
             </div>
         </div>
     </div>
+</form>
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/Pedido/Novo.js")
 }
